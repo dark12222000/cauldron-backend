@@ -40,7 +40,7 @@
 ################################################
 
 config/local.js
-config/api_keys.js
+config/passport.js
 
 
 
