@@ -54,16 +54,16 @@ module.exports.passport = {
   //   }
   // },
 
-  google: {
-    name: 'Google',
-    protocol: 'oauth2',
-    strategy: require('passport-google-oauth').OAuth2Strategy,
-    options: {
-      clientID: 'ID',
-      clientSecret: 'SECRET',
-      scope: 'https://www.googleapis.com/auth/plus.login'
-    }
-  },
+  // google: {
+  //   name: 'Google',
+  //   protocol: 'oauth2',
+  //   strategy: require('passport-google-oauth').OAuth2Strategy,
+  //   options: {
+  //     clientID: 'ID',
+  //     clientSecret: 'SECRET',
+  //     scope: 'https://www.googleapis.com/auth/plus.login'
+  //   }
+  // },
 
   // cas: {
   //   name: 'CAS',
@@ -76,3 +76,16 @@ module.exports.passport = {
   //   }
   // }
 };
+
+if(sails.config.api_keys.google){
+  module.exports.passport.google = {
+    name: 'Google',
+    protocol: 'oauth2',
+    strategy: require('passport-google-oauth').OAuth2Strategy,
+    options: {
+      clientID: sails.config.api_keys.google.clientID,
+      clientSecret: sails.config.api_keys.google.clientSecret,
+      scope: 'https://www.googleapis.com/auth/plus.login'
+    }
+  };
+}
