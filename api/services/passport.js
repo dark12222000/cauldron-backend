@@ -89,6 +89,15 @@ passport.connect = function (req, query, profile, next) {
     user.username = profile.username;
   }
 
+  /** Content not generated BEGIN */
+  // If the username property was empty and the profile object
+  // contains a property "displayName", add it to the user.
+  if (!user.username && profile.hasOwnProperty('id')) {
+    //console.log(profile);  // <= Use it to check the content given by Google about the user
+    user.username = profile.id;
+  }
+  /** Content not generated END */
+
   // If neither an email or a username was available in the profile, we don't
   // have a way of identifying the user in the future. Throw an error and let
   // whoever's next in the line take care of it.
